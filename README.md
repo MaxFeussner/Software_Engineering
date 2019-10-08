@@ -1,9 +1,11 @@
 # Software_Engineering
 
-Just Upload all the files for this module.
+Just Upload all the files for this module.  
 
-We have to finish the design till 11.10.2019 23.59. 
+We have to finish the design till 11.10.2019 23.59.   
 
-\n Andres will do the Interfaces
-\n Juan will do the Diagramms
-\n Max will do the requirements
+- Andres will do the Interfaces  
+
+- Juan will do the Diagramms  
+
+- Max will do the requirements  
