@@ -1,0 +1,5 @@
+Overview
+
+The objective of this project is to create a working calculator divided into 4 different programs which will work in a sequence to obtain the final result (meaning the output from the first program will be the input of the second one and so on). The first one will consist of a tokenizer which will split the input from the user into tokens (integers, floating point numbers, operators...). Then, the infix-to-postfix translator will change the notation to a simpler one, to facilitate the creation of the code in the next step (code generator) which will translate the notation to the instructions, which will be executed by the final program, the Virtual Machine. All of these programs will be written in C, without the use of any library apart from the ones included in the language.
+
+
