@@ -15,9 +15,9 @@ We have to finish the design till 11.10.2019 23.59.
 The second deliverable is the actual implementation of the system. Specifically, this should include:
 - implementation of the 4 components in the C programming language
 - **documented code, with each source code file containing the names of the authors/contributors**
-- **a test suite containing a number of tests that follow the TAP protocol.
+- **a test suite containing a number of tests that follow the TAP protocol.**
 - a Makefile that can be invoked, and which will compile the source code cleanly without errors
-- **updated documentation
+- **updated documentation**
 
 Evaluation of the implementation will take place as follows; I expect to be able to run the following commands
 - cd <whatever folder name you define>
