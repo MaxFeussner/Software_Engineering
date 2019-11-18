@@ -5,51 +5,66 @@
 
 int isdot(char test_char)
 	{
+    int c = 0;
 		if (test_char == '.')
 		{
-			return 1;
+			c++;
 		}
-		else
-		{
-			return 0;
-		}
+		return c;
 	}
 
   int ispom(char test_char)
   	{
+      int c = 0;
   		if (test_char == '+' || test_char == '-' || test_char == '(')
   		{
-  			return 1;
+  			c++;
   		}
-  		else
-  		{
-  			return 0;
-  		}
+  		return c;
   	}
 
 int main (int argc, char**argv) {
+  int r = 1;
+  FILE * in_file;
+	FILE * out_file;
+
+	//OPENING INPUT AND OUTPUT FILES
+	for(r; r < argc; r++){
+		if(strcmp(argv[r], "-i")==0){	//if input file is defined
+			in_file = fopen(argv[++r],"r");
+			if(in_file == NULL){	//if there was an error opening "in_file"
+				fprintf(stderr, "Can't open input file %s\nUsing standard input instead...\n", argv[i]);
+			}
+		}
+		else if(strcmp(argv[r], "-o")==0){ //if output file is defined
+			out_file = fopen(argv[++r],"w");
+			if(in_file == NULL){	//if there was an error opening "out_file"
+				fprintf(stderr, "Can't write on file %s\nUsing standard output instead...\n", argv[i]);
+			}
+		}
+	}
+	if(in_file == NULL) in_file = stdin; //if input file wasn't defined or there were errors, use standard input
+	if(out_file == NULL) out_file = stdout; //if output file wasn't defined or there were errors, use standard output
+
+
   int counter = 0;
   char buffer[1000];
-  FILE *fp = fopen("input_number.txt", "r");
-  char c = fgetc(fp);
-  while(!feof(fp))
+  char c = fgetc(in_file);
+  while(!feof(fp)) // fills everything in the inputfile into a buffer.
   {
-  printf("%c\n",c);
-  buffer[counter] = c;
-  c = fgetc(fp);
-  counter ++;
+    buffer[counter] = c;
+    c = fgetc(fp);
+    counter ++;
   }
-  buffer[counter+1] = '\0';
-  int buff_length = strlen(buffer);
-  printf("%i\n", buff_length);
 
-  FILE *p = fopen("file.txt", "a");
+  buffer[counter+1] = '\0'; // ends the string
+  int buff_length = strlen(buffer); // gets the length of ther buffer
 
-  for (int i = 0; i<buff_length-1; i++)
+  for (int i = 0; i<buff_length-1; i++) // iterates through the buffer and prints the tokens in a new file.
   {
-    if (ispunct(buffer[i]))
+    if (ispunct(buffer[i])) // test if char is number or punctuation
     {
-      if (ispunct(buffer[i-1]) && ispom(buffer[i]))
+      if (ispunct(buffer[i-1]) && ispom(buffer[i])) // test if char is operator or unary (if the char before is a Operator or an '(' it is a Unary)
       {
         fprintf(p, "Un%c\n", buffer[i]);
       }
@@ -59,7 +74,7 @@ int main (int argc, char**argv) {
       }
 
     }
-    if (isdigit(buffer[i])==1)
+    else if (isdigit(buffer[i])==1)
     {
       int counter = 0;
       int counter1 = i;
@@ -94,6 +109,10 @@ int main (int argc, char**argv) {
         fprintf(p, "Fp:%s\n", print_buffer );
       }
       i = counter1-1;
+  }
+  else
+  {
+    printf("The input at the position: %i %s\n", i,"Is not a viable character");
   }
   }
   return 0;
