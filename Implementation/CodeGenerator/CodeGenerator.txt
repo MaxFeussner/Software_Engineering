@@ -1,0 +1,143 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// de que tipo es la salida anterior 
+// pueden 
+char *concat(char *s1,char *s2){
+	int length = strlen(s1) + strlen(s2);
+	char *result = (char *) malloc(sizeof(char)*(length + 2));
+	int j = strlen(s1);
+	int i;
+	for(i = 0;i < j;i++){
+		result[i] = s1[i];
+	}
+	result[j] = " ";
+	for(i=0;i<strlen(s2);i++){
+		result[i + j + 1 ] = s2[i];
+	} 
+	result[length + 1] = '\0';
+	return result;
+}
+char *dividir(char f){
+	  
+	char delimitador[] = " ";
+	char *token = strtok(f, delimitador);
+	
+	if(token != NULL){
+	while(token != NULL){
+	// Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
+		char code  = CodeGenerator(token);
+		writeFile(code);
+		printf("Token: %s\n", token);
+		token = strtok(NULL, delimitador);
+        }
+    }
+	return token;
+}
+int main()
+{
+
+//Hay que usar este
+	FILE *archivo;
+ 	char caracteres[100];
+ 	archivo = fopen("prueba.txt","r");
+ 	if (archivo == NULL)
+ 		exit(1);
+ 	else
+        {
+ 	       while (feof(archivo) == 0)
+ 	    {
+ 	    	fgets(caracteres,100,archivo);
+ 	    	dividir(caracteres);
+ 	
+ 	    }
+           
+        }
+        fclose(archivo);
+
+
+//
+    concat("Hola","Juan");
+	int counter = 0;
+ 	char buffer[1000];
+ 	FILE *fp = fopen("input_number.txt", "r");
+	char c = fgetc(fp);
+	while(!feof(fp))
+  {
+  printf("%c\n",c);
+  buffer[counter] = c;
+  c = fgetc(fp);
+  counter ++;
+  }
+  buffer[counter+1] = '\0';
+  int buff_length = strlen(buffer);
+  printf("%i\n", buff_length);
+
+  FILE *p = fopen("file.txt", "a");
+
+    return 0;
+}
+char convert(int i){
+	return i+'0';
+}	
+char Codegenerator(char *i){
+	char *code;
+	char buff[100];
+	if(i==sizeof(int)){
+			//Error solucionar gcvt pasar a char);
+		code = concat("LOADINT",gcvt(i,20,buff));
+	}
+	if(i == sizeof(float)){
+		code = concat("LOADFLOAT",gcvt(i));
+	}
+	else{
+		//Solucionar me pide que sea un int
+		switch(i){
+		
+			case '+':
+			code = "ADD";
+			break;
+			case '*':
+			code = "MUL";
+			break;
+			case '-':
+			code = "SUB";
+			break;
+			case '/':
+			code = "DIV";
+			break;
+			case '^':
+			code  = "RAISED";
+			break;
+		}
+	}
+		return code;
+
+}
+leer caracter 
+char *readFile(char *fileName)
+{
+    FILE *file = fopen(fileName, "r");
+    char *code;
+    size_t n = 0;
+    int c;
+
+    if (file == NULL)
+        return NULL; //could not open file
+
+    code = malloc(1000);
+
+    while ((c = fgetc(file)) != EOF)
+    {
+        code[n++] = (char) c;
+    }
+
+    // don't forget to terminate with the null character
+    code[n] = '\0';        
+
+    return code;
+}
+//leer fichero
+
+}
