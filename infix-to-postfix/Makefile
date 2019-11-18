@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall
 token=token
-node=node
+node=nodedsfagfhsjgdk
 stack=stack
 main=infix-to-postfix
 
