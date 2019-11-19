@@ -1,10 +1,9 @@
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include "is_xy.h"
+#include <ctap.h>
 
-
+TESTS{
 void iterate_over_buffer(char* buffer1, FILE * out_file)
 {
 int buff_length = strlen(buffer1);
@@ -97,4 +96,6 @@ for (int i = 0; i<buff_length1; i++) // iterates through the buffer and prints t
     i = counter1-1; // This makes sure that no char will be written two times as a token.
   }
 }
+}
+
 }

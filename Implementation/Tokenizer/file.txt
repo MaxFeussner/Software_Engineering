@@ -1,7 +1,8 @@
-Op:(
 Un:-
+Lp:(
+Op:-
 Fp:120.34
-Op:)
+Rp:)
 Op:/
 In:405
 Op:%
@@ -9,11 +10,11 @@ In:4
 Op:+
 In:56
 Op:*
-Op:(
-Un:-
+Lp:(
+Op:-
 In:4
 Op:+
 In:30
 Op:+
 In:0
-Op:)
+Rp:)
