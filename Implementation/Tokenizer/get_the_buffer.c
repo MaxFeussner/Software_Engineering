@@ -14,6 +14,6 @@ while(!feof(in_file)) // fills everything in the inputfile into a buffer.
   counter ++;
 }
 buffer[counter+1] = '\0'; // ends the string
-printf("%s\n", buffer );
+fprintf(stderr,"%s\n", buffer );
 return buffer;
 }

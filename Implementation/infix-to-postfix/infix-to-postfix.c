@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "stack.h"
-#include "token.h"
+#include "../stack/stack.h"
+#include "../token/token.h"
 
 #define DELIMITER ':'
 #define INTEGER_SPC "In:"
@@ -139,7 +139,7 @@ void processOperator(Stack* s, Token* t, FILE* output){
 	else{
 		Token* top = getData(getTop(s));	//top is the token in the top node of "s" (without popping)
 		char c = *(char*)getValue(top);		//c is the character of "top"
-		if(precedence(top) <= precedence(t)){
+		if(precedence(top) < precedence(t)){
 			pushElement(s, t);	// if the new element has a greater precedence than the top, push
 		}
 		else{

@@ -28,9 +28,15 @@ int isdot(char test_char)//this function tests if a char is a dot or not
    int isop(char test_char)// this function test if a char is an operator (defined in the design).
   	{
       int c = 0;
-  		if (test_char == '+' || test_char == '-' || test_char == '*' || test_char == '/' || test_char == '%' || test_char == '(' ||test_char == ')')
+  		if (test_char == '+' || test_char == '-' || test_char == '*' || test_char == '/' || test_char == '%')
   		{
-  			c++;
+  			c = 1;
   		}
+		else if(test_char == '('){
+			c = 2;
+		}
+		else if(test_char == ')'){
+			c = 3;
+		}
   		return c;
   	}

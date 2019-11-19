@@ -52,8 +52,8 @@ int tokentype(char *t){
 			canbeint = false;
 		}
 	}
-	if(canbefloat) {printf("es float\n"); return 1; }
-	else if(canbeint) {printf("es int\n"); return 0;}
+	if(canbefloat) return 1;
+	else if(canbeint) return 0;
 	else return -1;
 	
 }
@@ -106,8 +106,10 @@ int main()
 	FILE *archivo;
 	FILE *output;
  	char caracteres[100];
- 	archivo = fopen("prueba.txt","r");
-	output = fopen("output.txt","w");
+ 	//archivo = fopen("prueba.txt","r");
+	//output = fopen("output.txt","w");
+	archivo = stdin;
+	output = stdout;
  	if (archivo == NULL)
  		exit(1);
  	else
@@ -126,7 +128,6 @@ int main()
 	      //	writeFile(file,code);
         fprintf(output,"%s\n", code);
         free(code);
-		    printf("Token: %s\n", token);
 		    token = strtok(NULL, delimitador);
         }
     }

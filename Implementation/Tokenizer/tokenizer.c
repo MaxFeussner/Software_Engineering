@@ -8,8 +8,8 @@
 
 int main (int argc, char**argv) {
   int r = 1;
-  FILE * in_file;
-	FILE * out_file;
+  FILE * in_file = NULL;
+	FILE * out_file = NULL;
 
 	//OPENING INPUT AND OUTPUT FILES
 	for(r; r < argc; r++){

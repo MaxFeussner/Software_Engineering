@@ -10,7 +10,7 @@ void iterate_over_buffer(char* buffer1, FILE * out_file)
 int buff_length = strlen(buffer1); // gets the length of ther buffer
 int buffer_counter = 0;
 char buffer[1000];
-printf("%i\n", buff_length );
+//fprintf(stderr,"%i\n", buff_length );
 for (int x = 0; x<buff_length; x++) //checks for wrong input and removes it.
 {
   if (isop(buffer1[x]) || isdigit(buffer1[x]) || isdot(buffer1[x]))
@@ -20,25 +20,42 @@ for (int x = 0; x<buff_length; x++) //checks for wrong input and removes it.
   }
   else
   {
-    printf("The Input at the position %i is not a valid input and will be ignored.\n", x+1);
+    fprintf(stderr,"The Input at the position %i is not a valid input and will be ignored.\n", x+1);
   }
 }
 buffer[buffer_counter]='\0';
-printf("%s\n", buffer );
+//fprintf(stderr,"%s\n", buffer );
 int buff_length1 = strlen(buffer);
 for (int i = 0; i<buff_length1; i++) // iterates through the buffer and prints the tokens in a new file.
 {
-  if (isop(buffer[i])) // test if char is number or punctuation
+  if (isop(buffer[i])!=0) // test if char is number or punctuation
   {
-    if (isop(buffer[i-1]) && ispom(buffer[i])) // test if char is operator or unary (if the char before is a Operator or an '(' it is a Unary)
-    {
-      fprintf(out_file, "Un:%c\n", buffer[i]);
+    if(ispom(buffer[i])){
+	if(i > 0){
+		if(isop(buffer[i-1])==1){
+			fprintf(out_file, "Un:%c\n", buffer[i]);
+		}
+		else
+		{
+	      		fprintf(out_file, "Op:%c\n", buffer[i]);
+	    	}
+	}
+	else{
+		fprintf(out_file, "Un:%c\n", buffer[i]);
+	}
     }
-    else
+    else if(isop(buffer[i])==1)
     {
       fprintf(out_file, "Op:%c\n", buffer[i]);
     }
-
+    else if(isop(buffer[i])==2)
+    {
+      fprintf(out_file, "Lp:%c\n", buffer[i]);
+    }
+    else if(isop(buffer[i])==3)
+    {
+      fprintf(out_file, "Rp:%c\n", buffer[i]);
+    }
   }
   else if (isdigit(buffer[i]))
   {
