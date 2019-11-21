@@ -35,8 +35,8 @@ int tokentype(char *t){
 			canbeint = false;
 		}
 	}
-	if(canbefloat) {printf("es float\n"); return 1; }
-	else if(canbeint) {printf("es int\n"); return 0;}
+	if(canbefloat) { return 1; }
+	else if(canbeint) { return 0;}
 	else return -1;
 	
 }
@@ -103,12 +103,10 @@ int main()
 	
 	      if(token != NULL){
 	      while(token != NULL){
-	     
-		    code  = codeGenerator(token);
-        fprintf(output,"%s\n", code);
-        free(code);
-		    printf("Token: %s\n", token);
-		    token = strtok(NULL, delimitador);
+		   code  = codeGenerator(token);
+      		   fprintf(output,"%s\n", code);
+     		   free(code);
+		   token = strtok(NULL, delimitador);
         }
     }
 	    	
