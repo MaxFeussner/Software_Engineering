@@ -1,0 +1,21 @@
+//0 0 2 - - 0 4 0 0 3 + - + - + 0 0 2.5 3 / - - -
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include<stdbool.h>
+#include<ctype.h>
+#include <ctap.h>
+
+TESTS {
+  char input[] = "0 0 2 - - 0 4 0 0 3 + - + - + 0 0 2.5 3 /";
+  char out[] = "LDI 0\nLDI 0\nLDI 2\nSUB\nSUB\nLDI 0\nLDI 4\nLDI 0\nLDI 0\nLDI 3\nADD\nSUB\nADD\nSUB\nADD\nLDI 0\nLDI 0\nLDF 2.5\nLDI 3\nDIV\nSUB\nSUB\nSUB\n";
+  char caracteres[50];
+ 	char* buff = (char*) calloc(50, sizeof(char));
+  File output = fopen("output.txt","r");
+ while (feof(output) == 0)
+ 	    {
+ 	    	fgets(caracteres,100,output);
+        strcat(buff, caracteres);                        
+      }
+
+}
