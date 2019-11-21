@@ -10,7 +10,8 @@ int main (int argc, char**argv) {
   int r = 1;
   FILE * in_file = NULL;
 	FILE * out_file = NULL;
-
+	char l = ')';
+	
 	//OPENING INPUT AND OUTPUT FILES
 	for(r; r < argc; r++){
 		if(strcmp(argv[r], "-i")==0){	//if input file is defined

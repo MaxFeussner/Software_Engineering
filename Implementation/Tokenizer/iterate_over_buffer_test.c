@@ -2,9 +2,10 @@
 #include <ctype.h>
 #include "is_xy.h"
 #include <ctap.h>
+#include "get_the_buffer.h"
 
 TESTS{
-void iterate_over_buffer(char* buffer1, FILE * out_file)
+int iterate_over_buffer(char* buffer1, FILE * out_file)
 {
 int buff_length = strlen(buffer1);
 int buffer_counter = 0;
@@ -18,7 +19,7 @@ for (int x = 0; x<buff_length; x++) //checks for wrong input and removes it.
   }
   else
   {
-    fprintf(stderr,"The Input at the position %i is not a valid input and will be ignored.\n", x+1);
+    //fprintf(stderr,"The Input at the position %i is not a valid input and will be ignored.\n", x+1);
   }
 }
 buffer[buffer_counter]='\0';
@@ -96,6 +97,22 @@ for (int i = 0; i<buff_length1; i++) // iterates through the buffer and prints t
     i = counter1-1; // This makes sure that no char will be written two times as a token.
   }
 }
+int y=0;
+return y;
 }
+
+
+FILE* test_output = fopen("test_output_iterate_over_buffer.txt","w");
+
+char* buffer;
+buffer = (char*) malloc(100*sizeof(char));
+char test_input_buffer[]="-(-120.a34s)/4j05%aa4+5A6a*(-4+30+0)\n";
+char test_result_buffer[]="Un:-\nLp:(\nOp:-\nFp:120.34\nRp:)\nOp:/\nIn:405\nOp:%\nIn:4\nOp:+\nIn:56\nOp:*\nLp:(\nOp:-\nIn:4\nOp:+\nIn:30\nOp:+\nIn:0\nRp:)\n";
+
+
+ok(iterate_over_buffer(test_inout_buffer, test_output)==0,"Iterate_over_buffer was succesfully run.");
+fclose(test_output);
+FILE* test_result = fopen("test_output_iterate_over_buffer.txt","r");
+is(get_buffer(test_result,buffer),test_result_buffer,"The input was correctly split into tokens.");
 
 }

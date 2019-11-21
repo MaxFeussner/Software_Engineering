@@ -5,7 +5,7 @@
 #include "is_xy.h"
 
 
-void iterate_over_buffer(char* buffer1, FILE * out_file)
+int iterate_over_buffer(char* buffer1, FILE * out_file)
 {
 int buff_length = strlen(buffer1);
 int buffer_counter = 0;
@@ -97,4 +97,6 @@ for (int i = 0; i<buff_length1; i++) // iterates through the buffer and prints t
     i = counter1-1; // This makes sure that no char will be written two times as a token.
   }
 }
+int y=0;
+return y;
 }

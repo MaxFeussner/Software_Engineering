@@ -21,9 +21,12 @@ return buffer;
 }
 char buffer[50];
 FILE * test_file;
-test_file = fopen("test_input.txt","r");
+test_file = fopen("test_get_the_buffer1.txt","r");
 char test_buffer[50]="(-120.a34s)/4j05%aa4+5A6a*(-4+3)\n"; // just put in the test_buffer the string from the inputfile with "\n" at the end.
 is(get_buffer(test_file,buffer),test_buffer,"The input was correctly put into a buffer");
+FILE * test_file1;
+test_file1 = fopen("test_get_the_buffer2.txt","r");
+is(get_buffer(test_file,buffer),"","The input was correctly put into a buffer");
 
 
 }
