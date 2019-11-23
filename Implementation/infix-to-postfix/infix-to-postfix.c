@@ -2,16 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../common/common.h"
 #include "../stack/stack.h"
 #include "../token/token.h"
 
 #define DELIMITER ':'
-#define INTEGER_SPC "In:"
-#define FLOATING_SPC "Fp:"
-#define LEFTP_SPC "Lp:"
-#define RIGHTP_SPC "Rp:"
-#define UNARY_SPC "Un:"
-#define OPERATOR_SPC "Op:"
+#define INTEGER_SPC "In"
+#define FLOATING_SPC "Fp"
+#define LEFTP_SPC "Lp"
+#define RIGHTP_SPC "Rp"
+#define UNARY_SPC "Un"
+#define OPERATOR_SPC "Op"
 
 /*
  * Pre: "t" is a valid pointer to a Token (not null)
@@ -28,16 +29,7 @@ int precedence(Token* t){
 }
 
 
-/*
- * Pre: input is a pointer to a text file
- * Post: read a line of "input" without storing it
- */
-void ignoreLine(FILE* input){
-	char* ignore=NULL;
-	size_t n = 0;
-	getline(&ignore, &n, input);
-	free(ignore);
-}
+
 
 /*
  * Pre: input is a valid pointer to a text file with the following format:
@@ -84,7 +76,7 @@ Token* readToken(FILE* input){
 	char* typeSpecifier = NULL;
 	size_t bufsize = 0;
 	Token* t;
-	if(getdelim(&typeSpecifier, &bufsize, DELIMITER, input)>0){ // read specifier
+	if(getUntilDelim(&typeSpecifier, &bufsize, DELIMITER, input)>0){ // read specifier
 		if(strcmp(typeSpecifier, INTEGER_SPC)==0){			//if it's an integer
 			int value;
 			t = createToken(INTEGER_ID);
@@ -165,27 +157,10 @@ void processOperator(Stack* s, Token* t, FILE* output){
  * Post: output file (if defined with the option -o, otherwise standard output) contains the operations from the input file in postfix notation
  */
 int main(int argc, char** argv){
-	int i = 1;
+	
 	FILE * in_file = NULL;
 	FILE * out_file = NULL;
-
-	//OPENING INPUT AND OUTPUT FILES
-	for(i; i < argc; i++){
-		if(strcmp(argv[i], "-i")==0){	//if input file is defined
-			in_file = fopen(argv[++i],"r");
-			if(in_file == NULL){	//if there was an error opening "in_file"
-				fprintf(stderr, "Can't open input file %s\nUsing standard input instead...\n", argv[i]);
-			}
-		}
-		else if(strcmp(argv[i], "-o")==0){ //if output file is defined
-			out_file = fopen(argv[++i],"w");
-			if(in_file == NULL){	//if there was an error opening "out_file"
-				fprintf(stderr, "Can't write on file %s\nUsing standard output instead...\n", argv[i]);
-			}
-		}
-	}
-	if(in_file == NULL) in_file = stdin; //if input file wasn't defined or there were errors, use standard input
-	if(out_file == NULL) out_file = stdout; //if output file wasn't defined or there were errors, use standard output
+	openIOFiles(argc, argv, &in_file, &out_file);
 
 	Token* t;
 	Stack* s = newStack();	//allocate space for the top of the stack. This stack will be formed with Nodes pointing to Tokens.

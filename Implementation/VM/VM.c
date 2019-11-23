@@ -5,21 +5,13 @@
 #include <math.h>
 #include "../stack/stack.h"
 #include "../token/token.h"
+#include "../common/common.h"
 
 #define INSTR 7 //number of instructions
 #define INSTR_CHARS 3 //number of characters per instruction code
 
 //constant vector of instructions available
 const char* INSTRUCTION_STRING[INSTR] = {"LDI", "LDF", "ADD", "SUB", "MUL", "DIV", "MOD"};
-
-
-/*
- * Pre: ---
- * Post: returned true if and only if op was a '+', '-', '*', '/' or '%'
- */
-bool validOperator(char op){
-	return (op=='+' || op=='-' || op=='*' || op=='/' || op=='%');
-}
 
 
 /*

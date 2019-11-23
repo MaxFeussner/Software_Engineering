@@ -1,5 +1,17 @@
-prog: codegenerator.o
-	gcc -o codegenerator codegenerator.o
+CC=gcc
+CFLAGS=-Wall
+commonDir=../common
+common=common
+main=codegenerator
 
-codegenerator.o: codegenerator.c
-		gcc -c codegenerator.c
+$(main): $(commonDir)/$(common).o $(main).o
+	$(CC) $(CFLAGS) $(commonDir)/$(common).o  $(main).o -o $(main)
+
+$(main).o: $(main).c
+	$(CC) $(CFLAGS) $(main).c -c
+
+$(common).o: $(commonDir)/$(common).c
+	make -C $(commonDir)
+
+clean:
+	rm -rf *.o
