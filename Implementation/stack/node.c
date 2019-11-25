@@ -44,6 +44,10 @@ Node* getNext(Node* n){
  * Post: freed "next(i)" for all possible values of i
  */
 void destroy(Node* n){
-    if(n->next != NULL) destroy(n->next);
+    if(n->next != NULL){
+	destroy(n->next);
+	n->next = NULL;
+    }
     free(n);
+    n = NULL;
 }

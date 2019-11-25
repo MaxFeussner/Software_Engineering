@@ -1,18 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "../common/common.h"
-#include "../stack/stack.h"
-#include "../token/token.h"
+#include "infix-to-postfix.h"
 
-#define DELIMITER ':'
-#define INTEGER_SPC "In"
-#define FLOATING_SPC "Fp"
-#define LEFTP_SPC "Lp"
-#define RIGHTP_SPC "Rp"
-#define UNARY_SPC "Un"
-#define OPERATOR_SPC "Op"
 
 /*
  * Pre: "t" is a valid pointer to a Token (not null)
@@ -37,8 +24,6 @@ int precedence(Token* t){
  * 			SPC2:X2
  * 		where SPCi are the specifier strings of the token types (defined above) and Xi are values
  * 		of such type, and ":" is the same delimiter as defined above.
- * 		"specifier" is an integer that defines what type of value is going to be read, as defined
- * 		in token.h
  * 		"format" is the string format that has to be read
  * 		"value" is able to store a value of the type that has to be read
  * 		"size" is the size in bytes of the type of "value"
@@ -109,6 +94,7 @@ Token* readToken(FILE* input){
 		}
 		else{	//invalid option (line is ignored)
 			ignoreLine(input);
+			t = NULL;
 		}
 	} 
 	else{	//"t" is an EOF token if nothing was read
@@ -131,7 +117,7 @@ void processOperator(Stack* s, Token* t, FILE* output){
 	else{
 		Token* top = getData(getTop(s));	//top is the token in the top node of "s" (without popping)
 		char c = *(char*)getValue(top);		//c is the character of "top"
-		if(precedence(top) < precedence(t)){
+		if(precedence(top) <= precedence(t)){
 			pushElement(s, t);	// if the new element has a greater precedence than the top, push
 		}
 		else{
@@ -139,11 +125,12 @@ void processOperator(Stack* s, Token* t, FILE* output){
 			c = *(char*)getValue(top);
 			while(!isEmpty(s) && precedence(top) > precedence(t)){	//pop and print until the precedence is the same
 				fprintf(output, "%c ", c);
-				top = getData(popElement(s));	//pop next element
+				top = getData(popElement(s));
 				c = *(char*)getValue(top);
+				
 			}
 			fprintf(output, "%c ", c);
-			pushElement(s, t);		//precedence of the top element is equal to the precedence of "t". Therefore "t" is pushed on the stack "s"
+			pushElement(s, t);		//precedence of the top element is equal or smaller to the precedence of "t". Therefore "t" is pushed on the stack "s"
 		}
 	}
 }
@@ -156,16 +143,12 @@ void processOperator(Stack* s, Token* t, FILE* output){
  * 		of such type.
  * Post: output file (if defined with the option -o, otherwise standard output) contains the operations from the input file in postfix notation
  */
-int main(int argc, char** argv){
+int infix_to_postfix(FILE* in_file, FILE* out_file, Stack* s){
 	
-	FILE * in_file = NULL;
-	FILE * out_file = NULL;
-	openIOFiles(argc, argv, &in_file, &out_file);
 
-	Token* t;
-	Stack* s = newStack();	//allocate space for the top of the stack. This stack will be formed with Nodes pointing to Tokens.
-	t = readToken(in_file);		//read first token
+	Token* t = readToken(in_file);		//read first token
 	char top;
+
 	while(!isEOF(t)){	//while the end of file hasn't been read yet
 		if(t != NULL){	//if the line was valid
 			int type = getID(t);	//type is the ID of token "t" as listed in token.h
@@ -220,10 +203,7 @@ int main(int argc, char** argv){
 		fprintf(out_file, "%c ", top);
 	}
 	//Terminate program successfully and free allocated memory
-	fclose(in_file);
-	fclose(out_file);
+	
 	free(t);
-	destroyElements(s);
-	free(s);
 	return 0;
 }
