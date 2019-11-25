@@ -22,6 +22,7 @@ Token* eof_token();
 bool isEOF(Token* t);
 int getID(Token* t);
 void* getValue(Token* t);
+bool isEqual(Token* t1, Token* t2);
 
 
 
