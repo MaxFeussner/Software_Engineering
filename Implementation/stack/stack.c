@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include <stdlib.h>
 #include <stdbool.h>
 #include "stack.h"

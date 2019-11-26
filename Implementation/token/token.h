@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include <stdbool.h>
 #define INTEGER_ID 0
 #define DOUBLE_ID 1

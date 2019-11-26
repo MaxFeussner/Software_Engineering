@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #define Node struct __node
 #ifndef NODE
 #define NODE

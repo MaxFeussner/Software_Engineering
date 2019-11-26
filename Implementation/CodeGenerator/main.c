@@ -1,3 +1,4 @@
+//AUTHOR: Juan Vercher
 #include "codegenerator.h"
 
 //calling the other function it writes in the output the instruccions

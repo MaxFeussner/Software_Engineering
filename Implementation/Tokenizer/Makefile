@@ -1,3 +1,5 @@
+##AUTHOR: Maximilian Feußner
+
 prog: tokenizer.o get_the_buffer.o is_xy.o iterate_over_buffer.o ../common/common.o
 	gcc -o tokenizer tokenizer.o get_the_buffer.o is_xy.o iterate_over_buffer.o ../common/common.o
 

@@ -1,3 +1,4 @@
+##AUTHOR: Andrés Otero García
 cd common
 echo -e "\e[44mCommon function tests:\e[0m"
 prove ./*.t

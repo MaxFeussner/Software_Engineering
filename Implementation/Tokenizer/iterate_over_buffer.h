@@ -1,3 +1,4 @@
+//AUTHOR: Maximilian Feußner
 #ifndef ITERATE_OVER_BUFFER
 #define ITERATE_OVER_BUFFER
 

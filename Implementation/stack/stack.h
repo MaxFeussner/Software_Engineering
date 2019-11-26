@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #define Stack struct __stack
 #ifndef STACK
 #define STACK

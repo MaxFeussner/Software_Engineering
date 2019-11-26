@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include "common.h"
 
 void openIOFiles(int argc, char** argv, FILE ** in_file, FILE ** out_file){

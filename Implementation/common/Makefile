@@ -1,3 +1,4 @@
+##AUTHOR: Andrés Otero García
 CC=gcc
 common=common
 test=common_test

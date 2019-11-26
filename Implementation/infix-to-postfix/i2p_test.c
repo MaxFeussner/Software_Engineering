@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include <ctap.h>
 #include <time.h>
 #include <stdlib.h>

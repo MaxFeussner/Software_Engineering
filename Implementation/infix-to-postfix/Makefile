@@ -1,3 +1,4 @@
+##AUTHOR: Andrés Otero García
 CC=gcc
 CFLAGS=-Wall
 tokenDir=../token

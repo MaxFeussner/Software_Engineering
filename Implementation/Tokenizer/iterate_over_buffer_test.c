@@ -1,3 +1,4 @@
+//AUTHOR: Maximilian Feußner
 #include <stdlib.h>
 #include <ctype.h>
 #include "is_xy.h"

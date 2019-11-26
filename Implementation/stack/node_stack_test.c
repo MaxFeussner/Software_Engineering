@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include "node.h"
 #include "stack.h"
 #include <time.h>

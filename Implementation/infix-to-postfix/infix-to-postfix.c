@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include "infix-to-postfix.h"
 
 

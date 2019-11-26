@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #ifndef VM_MODULE
 #define VM_MODULE
 #include <stdio.h>

@@ -1,3 +1,4 @@
+##AUTHOR: Andrés Otero García
 CC=gcc
 tokDir=Tokenizer
 tokenDir=token

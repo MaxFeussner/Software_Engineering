@@ -1,10 +1,11 @@
+//AUTHOR: Maximilian Feußner
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include "is_xy.h"
 
-
+//The input is a String and a file. This function prints all the operators and numbers in the file with the specifier and the values
 int iterate_over_buffer(char* buffer1, FILE * out_file)
 {
 	int buff_length = strlen(buffer1);

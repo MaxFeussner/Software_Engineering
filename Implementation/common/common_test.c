@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include <ctap.h>
 #include "common.h"
 #include <stdio.h>

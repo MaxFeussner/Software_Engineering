@@ -1,3 +1,4 @@
+//AUTHOR: Maximilian Feußner
 #ifndef IS_XY
 #define IS_XY
 

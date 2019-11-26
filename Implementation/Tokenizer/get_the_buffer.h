@@ -1,3 +1,4 @@
+//AUTHOR: Maximilian Feußner
 #ifndef GET_BUFFER
 #define GET_BUFFER
 

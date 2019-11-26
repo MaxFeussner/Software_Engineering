@@ -1,3 +1,4 @@
+##AUTHOR: Andrés Otero García
 tokDir=Tokenizer
 tokEx=tokenizer
 i2pDir=infix-to-postfix

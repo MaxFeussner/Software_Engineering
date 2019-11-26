@@ -1,3 +1,4 @@
+//AUTHOR: Juan Vercher
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #ifndef COMMON_CALC
 #define COMMON_CALC
 

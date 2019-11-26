@@ -1,3 +1,4 @@
+//AUTHOR: Andrés Otero García
 #include "../common/common.h"
 #include "../stack/stack.h"
 #include "../token/token.h"
