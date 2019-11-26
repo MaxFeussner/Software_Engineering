@@ -36,7 +36,8 @@ test: $(token).o $(test).o $(tokenDir)/$(token).o $(stackDir)/$(stack).o $(stack
 $(test).o: $(test).c
 	$(CC) $(CFLAGS) $(test).c -c
 
-$(node).o:
+$(node).o: $(nodeDir)/$(node).c
+	make -C $(stackDir)
 
 ##clear
 clean:
