@@ -43,7 +43,11 @@ bool validOperator(char op){
 	return (op=='+' || op=='-' || op=='*' || op=='/' || op=='%');
 }
 
-
+/*
+ * Pre: stream is a pointer to a valid text file
+ * Post: if *line_ptr was set to NULL and *n to 0, the function allocated and changed the integer depending on the amount of data from stream
+ *	 otherwise, *line_ptr stored *n characters from stream until a character delim was found, which was read but NOT stored in *line_ptr
+ */
 ssize_t getUntilDelim(char **lineptr, size_t *n, int delim, FILE *stream){
 	ssize_t temp = getdelim(lineptr, n, delim, stream) -1;
 	if(temp >= 0) (*lineptr)[temp] = '\0'; //get rid of the delimiter

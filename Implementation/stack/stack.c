@@ -10,6 +10,7 @@
 Stack* newStack(){
     Stack* new = malloc(sizeof(Stack));
     new->n = 0;
+    new->top = NULL;
     return new;
 }
 
