@@ -1,8 +1,13 @@
-Would be good to have a cover page with document title and author names. Hierarchical doc structure is good. Some requirements are not quite SMART - how do you actually test that the calculator always returns the correct answer for example.
- Requirements are not traceable (t of smart): they are not numbered. Some requirements are "complex", i.e. they could be split up and more specific i.e. R2 regarding the operators.
- Some descriptive text contains assumptions ("traditional mathematical notation"). Interesting you allow unary negative operators. 
+Would be good to have a cover page with document title and author names. Hierarchical doc structure is good. 
+Some requirements are not quite SMART - how do you actually test that the calculator always returns the correct answer for example.
+Requirements are not traceable (t of smart): they are not numbered. Some requirements are "complex",
+i.e. they could be split up and more specific i.e. R2 regarding the operators.
+Some descriptive text contains assumptions ("traditional mathematical notation"). Interesting you allow unary negative operators. 
 Great if you can get it working, I'm not sure if the standard infix2postfix algorithm can deal with it. No problem if it's left out. 
 Nice short notation for your assembly language. Good: you have captioned and numbered your figures and also referenced them. 
-Less good: the DFD should have the actions inside the bubbles rather than on the arrows. It is now ambiguous or perhaps poor placement of those labels. they seem linked to the arrows. High level architecture: what do the boxes, arrows, and round boxes mean? Not sure what graphic 3 tries to convey; what type of diagram is this; how should this be read? graphic 4: Not sure what type of daigram this is; suggests a class diagram, with attributes and operations; not sure what the blue boxes are then... 
+Less good: the DFD should have the actions inside the bubbles rather than on the arrows. It is now ambiguous or perhaps poor placement of those labels. 
+they seem linked to the arrows. High level architecture: what do the boxes, arrows, and round boxes mean? Not sure what graphic 3 tries to convey; 
+what type of diagram is this; how should this be read? graphic 4: Not sure what type of daigram this is;
+ suggests a class diagram, with attributes and operations; not sure what the blue boxes are then... 
 
 Klaas-Jan Stol, 4 Nov at 10:31 
