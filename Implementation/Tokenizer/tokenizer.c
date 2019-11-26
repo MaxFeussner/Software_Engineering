@@ -16,7 +16,7 @@ int main (int argc, char**argv) {
 	openIOFiles(argc, argv, &in_file, &out_file);
 	
 	char* buffer;
-	buffer = (char*) malloc(100 * sizeof(char));
+	buffer = (char*) malloc(1000 * sizeof(char));
 	iterate_over_buffer(get_buffer(in_file, buffer), out_file);
 	return 0;
     }

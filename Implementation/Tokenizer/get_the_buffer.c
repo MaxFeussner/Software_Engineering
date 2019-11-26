@@ -8,13 +8,19 @@
 char * get_buffer(FILE * in_file, char* buffer)
 {
 int counter = 0;
+int length = 950;//strlen(buffer);
+int test = 0;
 char c = fgetc(in_file);
-while(!feof(in_file)) // fills every single char from the inputfile into a buffer.
+while(!feof(in_file) && test == 0) // fills every single char from the inputfile into a buffer.
 {
   buffer[counter] = c;
   c = fgetc(in_file);
   counter ++;
+  if (counter>length-1)
+  {
+	test++;	
+  }
 }
-buffer[counter+1] = '\0'; // ends the string
+buffer[counter] = '\0'; // ends the string
 return buffer;
 }

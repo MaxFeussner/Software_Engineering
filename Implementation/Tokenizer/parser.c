@@ -5,46 +5,34 @@
 #include "is_xy.h"
 
 
-int iterate_over_buffer(char* buffer1, FILE * out_file)
+int iterate_over_buffer(int k, char c, FILE * out_file)
 {
-	int buff_length = strlen(buffer1);
-	int buffer_counter = 0;
-	char buffer[1000];
+	
 	int canBeDot = 1;
-	for (int x = 0; x<buff_length-1; x++) //checks for wrong input and removes it.
+	if (isop(c) || isdigit(c) || (isdot(c) && canBeDot == 1))
 	{
-		if (isop(buffer1[x]) || isdigit(buffer1[x]) || (isdot(buffer1[x]) && canBeDot == 1))
-		{
-			if(isop(buffer1[x])){
-				canBeDot = 1;
-			}
-			else if(isdot(buffer1[x])){
-				canBeDot = 0;
-			}
-			buffer[buffer_counter] = buffer1[x];
-			buffer_counter++;
+		if(isop(c)){
+			canBeDot = 1;
+		}
+		else if(isdot(c)){
+			canBeDot = 0;
+		}
 		}
 		else
 		{
 			fprintf(stderr,"Error: The input %c at position %d is not a valid and will be ignored.\n", buffer1[x], x+1);
 		}
 	}
-	buffer[buffer_counter]='\0';
-	int buff_length1 = strlen(buffer);
-	for (int i = 0; i<buff_length1; i++){ // iterates through the buffer and prints the tokens in a new file.
-		if (isop(buffer[i])!=0){ // test if char is operator or unary.
-			if(ispom(buffer[i])){
-				if(i > 0){
-					if(isop(buffer[i-1])==1){
-						fprintf(out_file, "Un:%c\n", buffer[i]);
+
+		if (isop(c)!=0){ // test if char is operator or unary.
+			if(ispom(c)){
+				if(k == 1){
+					fprintf(out_file, "Un:%c\n", buffer[i]);
 					}
 					else{
 			      			fprintf(out_file, "Op:%c\n", buffer[i]);
 			    		}
-				}
-				else{
-					fprintf(out_file, "Un:%c\n", buffer[i]);
-				}
+				
 			}
 			else if(isop(buffer[i])==1)
 			{
@@ -59,7 +47,7 @@ int iterate_over_buffer(char* buffer1, FILE * out_file)
 				fprintf(out_file, "Rp:%c\n", buffer[i]);
 			}
 		}
-		else if (isdigit(buffer[i])) // tests if char is a digit.
+		else if (isdigit(c)) // tests if char is a digit.
 		{
 			int counter = 0;
 			int counter1 = i;
