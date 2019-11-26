@@ -71,7 +71,7 @@ for (int i = 0; i<buff_length1; i++) // iterates through the buffer and prints t
     }
     int array_length = 100;
     char print_buffer[array_length];
-    for (counter2; counter2< (i+counter); counter2++)
+    for (counter2 = i; counter2< (i+counter); counter2++)
     {
       print_buffer[counter3] = buffer[counter2];
       counter3++;

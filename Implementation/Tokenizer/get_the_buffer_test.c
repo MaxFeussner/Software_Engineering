@@ -26,7 +26,7 @@ char test_buffer[50]="(-120.a34s)/4j05%aa4+5A6a*(-4+3)\n"; // just put in the te
 is(get_buffer(test_file,buffer),test_buffer,"The input was correctly put into a buffer");
 FILE * test_file1;
 test_file1 = fopen("test_get_the_buffer2.txt","r");
-is(get_buffer(test_file,buffer),"","The input was correctly put into a buffer");
+is(get_buffer(test_file1,buffer),"","The input was correctly put into a buffer");
 
 
 }
