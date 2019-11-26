@@ -21,10 +21,6 @@ all:
 	make -C $(CGDir)
 	make -C $(VMDir)
 
-run_pipe:
-	echo "Using file \"input_file.txt\""
-	cat input_file.txt | ./$(tokDir)/$(tokEx) | ./$(i2pDir)/$(i2pEx) | ./$(CGDir)/$(CGEx) | ./$(VMDir)/$(VMEx)
-
 test:
 	make -C $(tokDir) test
 	make -C $(tokenDir) test
@@ -35,10 +31,11 @@ test:
 	make -C $(VMDir) test
 
 test_all:
-	prove ./$(tokDir)/*.t
-	prove ./$(tokenDir)/*.t
-	prove ./$(stackDir)/*.t
-	prove ./$(commonDir)/*.t
-	prove ./$(i2pDir)/*.t
-	prove ./$(CGDir)/*.t
-	prove ./$(VMDir)/*.t
+	make -C $(tokDir) run_test
+	make -C $(tokenDir) run_test
+	make -C $(stackDir) run_test
+	make -C $(commonDir) run_test
+	make -C $(i2pDir) run_test
+	make -C $(CGDir) run_test
+	make -C $(VMDir) run_test
+
