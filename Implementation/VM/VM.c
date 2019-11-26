@@ -1,14 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <math.h>
-#include "../stack/stack.h"
-#include "../token/token.h"
-#include "../common/common.h"
+#include "VM.h"
 
-#define INSTR 7 //number of instructions
-#define INSTR_CHARS 3 //number of characters per instruction code
 
 //constant vector of instructions available
 const char* INSTRUCTION_STRING[INSTR] = {"LDI", "LDF", "ADD", "SUB", "MUL", "DIV", "MOD"};
@@ -80,8 +71,14 @@ Token* operateTokens(Token* t1, char op, Token* t2){
 			setValue(resultToken, &res, sizeof(double));
 			break;
 		case '/':
-			res = v1 / v2;
-			setValue(resultToken, &res, sizeof(double));
+			if(v2 != ZERO){
+				res = v1 / v2;
+				setValue(resultToken, &res, sizeof(double));
+			}
+			else{
+				fprintf(stderr, "Division by zero!\n");
+				return NULL;
+			}
 			break;
 		case '%':
 			res = fmod(v1, v2);
@@ -118,36 +115,18 @@ int instruction_index(char* buffer){
  * 	 such operations if notation was correct.
  *	 if an unknown operation was found, printed an error message on stderr
  */
-int main(int argc, char** argv){
-	int i = 1;
-	FILE * in_file = NULL;
-	FILE * out_file = NULL;
-	for(i; i < argc; i++){
-		if(strcmp(argv[i], "-i")==0){	//if input file is defined
-			in_file = fopen(argv[++i],"r");
-			if(in_file == NULL){
-				fprintf(stderr, "Can't open input file %s\nUsing standard input instead...\n", argv[i]);
-				
-			}
-		}
-		else if(strcmp(argv[i], "-o")==0){ //if output file is defined
-			out_file = fopen(argv[++i],"w");
-			if(in_file == NULL){
-				fprintf(stderr, "Can't write on file %s\nUsing standard output instead...\n", argv[i]);
-			}
-		}
-	}
-	if(in_file == NULL) in_file = stdin; //if input file wasn't defined or there were errors, use standard input
-	if(out_file == NULL) out_file = stdout; //if output file wasn't defined or there were errors, use standard output
+int VM(FILE * in_file, FILE * out_file, Stack* s){
 
 	char buffer[INSTR_CHARS + 1];	//buffer to read instructions
 	char* aux = NULL;		//buffer to ignore lines
 	size_t aux2 = 0;		//size_t variable (used to ignore lines)
 	size_t line_size = INSTR_CHARS;	//number of characters for every instruction
 	ssize_t readBytes = 0;		//variable where the number of read bytes will be stored after every read
-	Stack* s = newStack();		//stack where all numbers will be pushed
+
 	Token* t;
+
 	readBytes = fread(buffer, sizeof(char), line_size, in_file);	//read first instruction
+
 	while(readBytes > 0){	//if the instruction was valid
 
 		int instr = instruction_index(buffer);	//get instruction index
@@ -213,10 +192,6 @@ int main(int argc, char** argv){
 	if(!isEmpty(s)) fprintf(stderr, "Error: Stack is not empty!\n");	//something went wrong (probably missing operation)
 	else fprintf(out_file, "%lf\n", finalResult);	//print result in out_file
 
-	//free allocated memory
-	fclose(in_file);
-	fclose(out_file);
-	destroyElements(s);
-	free(s);
+	
 	return 0;
 }

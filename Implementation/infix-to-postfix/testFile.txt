@@ -1,0 +1,12 @@
+In:836740483
+Fp:114062.804100
+Lp:(
+Rp:)
+Op:+
+Op:-
+Op:*
+Op:/
+Op:%
+Un:+
+Un:-
+invalid:input
