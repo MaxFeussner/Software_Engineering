@@ -15,6 +15,7 @@ int tokentype(char *t){
 	bool canbefloat = false;
 	bool dotfound = false;
 	unsigned int len = strlen(t);
+	if(len == 0) return -2;
 	if(len == 1 && validOperator(t[0])){
 		return 3;
 	}
@@ -44,11 +45,12 @@ int tokentype(char *t){
 char *codeGenerator(char *i){
 	char* buff = (char*) calloc(20, sizeof(char));
 	int type = tokentype(i);
-	if(type == 0){	
+	if(type == -2);
+	else if(type == 0){	
 		strcpy(buff, "LDI ");
     		strcat(buff, i);
 	}
-	if(type == 1){
+	else if(type == 1){
 		strcpy(buff, "LDF ");
    		strcat(buff, i);
 	}
@@ -91,7 +93,7 @@ int main(int argc, char** argv)
 		getUntilDelim(&token, &bufsize, DELIMITER, in_file); // read first part
 		char *code;
 
-		if(token != NULL){
+		if(token != NULL && strlen(token)>0){
 			code  = codeGenerator(token);
 			fprintf(out_file,"%s\n", code);
 			free(code);

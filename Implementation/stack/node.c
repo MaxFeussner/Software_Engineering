@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "node.h"
+#include <stdio.h>
 
 /*
  * Pre: ---
@@ -44,10 +45,17 @@ Node* getNext(Node* n){
  * Post: freed "next(i)" for all possible values of i
  */
 void destroy(Node* n){
+	//fprintf(stderr, "c1\n");
     if(n->next != NULL){
+	//fprintf(stderr, "c2\n");
 	destroy(n->next);
+	//fprintf(stderr, "c3\n");
 	n->next = NULL;
+	//fprintf(stderr, "c4\n");
     }
+	
     free(n);
+	//fprintf(stderr, "c5\n");
     n = NULL;
+	//fprintf(stderr, "c6\n");
 }
