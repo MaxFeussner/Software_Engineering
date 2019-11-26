@@ -16,11 +16,11 @@ iterate_over_buffer.o: iterate_over_buffer.c
 common.o: ../common/common.c
 	make -C ../common
 
-test: common.o get_the_buffer.o get_the_buffer_test.o is_xy.o is_xy_test.o iterate_over_buffer.o iterate_over_buffer_test.o tokenizer.o tokenizer_test.o
-	gcc -Wall common.o get_the_buffer.o tokenizer_test.o tokenizer.o -o tokenizer_test.t
-	gcc -Wall common.o get_the_buffer.o get_the_buffer_test.o -o get_the_buffer_test.t
-	gcc -Wall common.o is_xy.o is_xy_test.o -o is_xy_test.t
-	gcc -Wall common.o get_the_buffer.o is_xy.o iterate_over_buffer.o iterate_over_buffer_test.o -o iterate_over_buffer_test.t
+test: ../common/common.o get_the_buffer.o get_the_buffer_test.o is_xy.o is_xy_test.o iterate_over_buffer.o iterate_over_buffer_test.o tokenizer_test.o
+	gcc -Wall ../common/common.o is_xy.o iterate_over_buffer.o get_the_buffer.o tokenizer_test.o -o tokenizer_test.t
+	gcc -Wall ../common/common.o get_the_buffer.o get_the_buffer_test.o -o get_the_buffer_test.t
+	gcc -Wall ../common/common.o is_xy.o is_xy_test.o -o is_xy_test.t
+	gcc -Wall ../common/common.o get_the_buffer.o is_xy.o iterate_over_buffer.o iterate_over_buffer_test.o -o iterate_over_buffer_test.t
 
 tokenizer_test.o: tokenizer_test.c
 	gcc -Wall tokenizer_test.c -c

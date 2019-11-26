@@ -110,7 +110,7 @@ char test_input_buffer[]="-(-120.a34s)/4j05%aa4+5A6a*(-4+30+0)\n";
 char test_result_buffer[]="Un:-\nLp:(\nOp:-\nFp:120.34\nRp:)\nOp:/\nIn:405\nOp:%\nIn:4\nOp:+\nIn:56\nOp:*\nLp:(\nOp:-\nIn:4\nOp:+\nIn:30\nOp:+\nIn:0\nRp:)\n";
 
 
-ok(iterate_over_buffer(test_inout_buffer, test_output)==0,"Iterate_over_buffer was succesfully run.");
+ok(iterate_over_buffer(test_input_buffer, test_output)==0,"Iterate_over_buffer was succesfully run.");
 fclose(test_output);
 FILE* test_result = fopen("test_output_iterate_over_buffer.txt","r");
 is(get_buffer(test_result,buffer),test_result_buffer,"The input was correctly split into tokens.");

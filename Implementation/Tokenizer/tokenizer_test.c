@@ -13,6 +13,7 @@ char* buffer;
 buffer = (char*) malloc(1000*sizeof(char));
 get_buffer(in_file, buffer);
 iterate_over_buffer(buffer, out_file);
+return 0;
 }
 
 char* buffer1;
